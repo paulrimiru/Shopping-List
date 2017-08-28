@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Shopping list app</title>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/main.css"  media="screen,projection"/>
+      
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!--Character encoding-->
+      <meta charset="utf-8"/>
+      
+    </head>
+
+    <body class="container valign-wrapper" background="images/test2">
+        <div class="card col s12 center-align ">
+            <div class="card-tabs">
+                <ul class="tabs tabs-fixed-width">
+                    <li class="tab"><a href="#login">Login</a></li>
+                    <li class="tab"><a href="#signup">Signup</a></li>
+                </ul>
+            </div>
+            <div class="card-content">
+                <div id="login" class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="myemail" type="email" class="validate">
+                                <label for="myemail" data-error="invalid email" data-success="valid email">Enter your email</label>
+                            </div>
+                            <div class="input-field col s12">
+                                    <input id="mypass" type="password" class="validate">
+                                    <label for="mypass">Enter your password</label>
+                            </div> 
+                            <a class="waves-effect waves-light btn">Login</a>  
+                        </div>
+                    </form>
+                </div>
+                <div id="signup" class="row">
+                        <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                            <input id="myuser" type="text" class="validate">
+                                            <label for="myuser" >Enter your user name</label>
+                                        </div>
+                                    <div class="input-field col s12">
+                                            <input id="myemail" type="email" class="validate">
+                                            <label for="myemail" data-error="invalid email" data-success="valid email">Enter your email</label>
+                                        </div>
+                                    <div class="input-field col s12">
+                                        <input id="mypass" type="password" class="validate">
+                                        <label for="mypass">Enter your Password</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                            <input id="myConfpass" type="password" class="validate">
+                                            <label for="myConfpass">Renter your password</label>
+                                    </div> 
+                                    <a class="waves-effect waves-light btn">Signup</a>  
+                                </div>
+                            </form>
+                </div>
+            </div>   
+        </div>
+        <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript" src="js/mainjs.js"></script>
+    </body>
+</html>
