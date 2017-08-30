@@ -10,13 +10,15 @@ class User(object):
         self.email = email
         self.password = password
         self.userlists = {}
-    def create_list(self, name, description):
+    def create_list(self, mylist):
         """Creates a new user list"""
-        newlist = ShoppingList(name, description)
-        self.userlists.update({name, newlist})
-    def delete_list(self, name):
+        self.userlists.update({mylist.email, mylist})
+    def delete_list(self, email):
         """deletes a user list"""
-        self.userlists.pop(name)
-    def get_list(self, name):
+        self.userlists.pop(email)
+    def get_list(self, email):
         """gets a specific list"""
-        return self.userlists[name]
+        return self.userlists[email]
+    def get_all(self):
+        """gets all the users lists"""
+        return self.userlists

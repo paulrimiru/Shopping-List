@@ -1,21 +1,24 @@
+"""Module to manipulate shopiing lists"""
 import unittest
 
 from shopping_list_app.Items import Items
 from shopping_list_app.ShoppingList import ShoppingList
 
 
-class ShoppingList_test(unittest.TestCase):
+class ShoppingListtest(unittest.TestCase):
+    """Claass for adding manipulating user lists"""
     def setUp(self):
         self.firstlist = ShoppingList("FirstList", "this is my first list sir")
         self.firstitem = Items("milk", "for the kid", 500)
-        
     def test_adding_item(self):
+        """method to add items"""
         item = Items("Choclate", "For the wife", 1500)
         self.assertEqual(0, len(self.firstlist.items))
         self.firstlist.add_item("Choclate", item)
         self.assertEqual(1, len(self.firstlist.items))
 
     def test_remove_item(self):
+        """method to remove items"""
         item = Items("Wheat Floor", "For cooking chapati", 240)
         item2 = Items("Maize floor", "For cooking ugali", 100)
 
@@ -26,6 +29,7 @@ class ShoppingList_test(unittest.TestCase):
         self.firstlist.remove_item(item.name)
         self.assertEqual(1, len(self.firstlist.items))
     def test_update_item(self):
+        """method to update items"""
         item = Items("Flowers", "For the mother", 2000)
         self.firstlist.add_item(item.name, item)
 
