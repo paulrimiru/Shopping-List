@@ -3,7 +3,7 @@ import unittest
 from shopping_list_app.ShoppingList import ShoppingList
 from shopping_list_app.Items import Items
 
-class shoppinglist_test(unittest.TestCase):
+class ShoppingList_test(unittest.TestCase):
     def setUp(self):
         self.firstlist = ShoppingList("FirstList", "this is my first list sir")
         self.firstitem = Items("milk", "for the kid", 500)
