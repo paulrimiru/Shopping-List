@@ -1,7 +1,7 @@
 """
     This class adds new user and manages the user's lists
 """
-import myapp.ShoppingList
+from myapp.ShoppingList import ShoppingList
 class User(object):
     def __init__(self, firstname, secondname, email, password):
         self.firstname = firstname
@@ -12,7 +12,7 @@ class User(object):
         self.userlists = {}
     def create_list(self, name, description):
         """Creates a new user list"""
-        newlist = myapp.ShoppingList(name, description)
+        newlist = ShoppingList(name, description)
         self.userlists.update({name, newlist})
     def delete_list(self, name):
         """deletes a user list"""
