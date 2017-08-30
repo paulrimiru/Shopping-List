@@ -1,12 +1,9 @@
 """ inintialize the app """
 
 from flask import Flask
-app = Flask(__name__)
+APP = Flask(__name__, instance_relative_config=True)
 
-""" test method """
-@app.route('/')
-def hello_world():
-    return 'Hello World'
+from myapp import views
 
 if __name__ == '__main__':
-    app.run()
+    APP.run()
