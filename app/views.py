@@ -3,7 +3,7 @@ Class for rendering my views in template folder
 """
 from flask import render_template
 
-from myapp import app
+from app import app
 
 @app.route('/')
 def index():
