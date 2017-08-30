@@ -55,6 +55,7 @@ local_settings.py
 
 # Flask stuff:
 myapp/
+.vscode/
 
 # Scrapy stuff:
 .scrapy
