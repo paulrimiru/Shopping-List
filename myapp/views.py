@@ -12,35 +12,35 @@ def index():
     """
     return render_template("index.html")
 
-@app.route('/dashboard')
+@app.route('/dashboard/')
 def dashboard():
     """
     Render the user dashboard
     """
     return render_template("dashboard.html")
 
-@app.route('/Login')
+@app.route('/Login/')
 def login():
     """
     Render login page used to sign in
     """
     return render_template("Login.html")
 
-@app.route('/register')
+@app.route('/register/')
 def register():
     """
     Render Register page used to sign up the user
     """
     return render_template("register.html")
 
-@app.route('/create_shoppinlist')
+@app.route('/create_shoppinlist/')
 def create_shoppinglist():
     """
     Render view for creating new shopping lists
     """
     return render_template("create_shoppinglist.html")
 
-@app.route('/edit_shoppinglist')
+@app.route('/edit_shoppinglist/')
 def edit_shoppinglist():
     """
     Render view for editing shopping lists
