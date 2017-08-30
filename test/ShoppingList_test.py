@@ -1,7 +1,8 @@
 import unittest
 
-from shopping_list_app.ShoppingList import ShoppingList
 from shopping_list_app.Items import Items
+from shopping_list_app.ShoppingList import ShoppingList
+
 
 class ShoppingList_test(unittest.TestCase):
     def setUp(self):
@@ -35,4 +36,3 @@ class ShoppingList_test(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    
