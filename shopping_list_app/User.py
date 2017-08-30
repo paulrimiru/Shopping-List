@@ -1,7 +1,7 @@
 """
     This class adds new user and manages the user's lists
 """
-from app.ShoppingList import ShoppingList
+from shopping_list_app.ShoppingList import ShoppingList
 class User(object):
     def __init__(self, firstname, secondname, email, password):
         self.firstname = firstname
