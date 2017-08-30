@@ -56,6 +56,10 @@ local_settings.py
 # Flask stuff:
 instance/
 .webassets-cache
+bin/
+include/
+man/
+pip-selfcheck.json
 
 # Scrapy stuff:
 .scrapy
