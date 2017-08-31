@@ -1,4 +1,6 @@
-"""This module adds users and removes users from the app"""
+"""
+This module adds users and removes users from the app
+"""
 class Admin(object):
     """class adds and removes users"""
     def __init__(self):
