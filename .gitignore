@@ -54,17 +54,8 @@ coverage.xml
 local_settings.py
 
 # Flask stuff:
-<<<<<<< HEAD
-instance/
-.webassets-cache
-myapp/bin/
-myapp/include/
-myapp/man/
-myapp/pip-selfcheck.json
-=======
 myapp/
 .vscode/
->>>>>>> feature-challenge#2
 
 # Scrapy stuff:
 .scrapy
