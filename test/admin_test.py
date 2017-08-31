@@ -1,10 +1,10 @@
 """Test modelu fo Admin.py"""
 import unittest
 
-from shopping_list_app.Admin import Admin
-from shopping_list_app.User import User
+from shopping_list_app.admin import Admin
+from shopping_list_app.user import User
 
-class Admintest(unittest.TestCase):
+class AdminTest(unittest.TestCase):
     """class containing tests for admin.py methods"""
     def setUp(self):
         self.admin = Admin()

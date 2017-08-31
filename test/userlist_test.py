@@ -1,10 +1,10 @@
 """module to test User ability to manipulate lists"""
 import unittest
 
-from shopping_list_app.User import User
-from shopping_list_app.ShoppingList import ShoppingList
+from shopping_list_app.user import User
+from shopping_list_app.shoppinglist import ShoppingList
 
-class UserListtest(unittest.TestCase):
+class UserListTest(unittest.TestCase):
     """Classs to test the manipulation of user list"""
     def setUp(self):
         self.user = User("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
