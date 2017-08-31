@@ -24,7 +24,7 @@ def login():
     """
     Render login page used to sign in
     """
-    return render_template("Login.html")
+    return render_template("login.html")
 
 @APP.route('/register/')
 def register():
