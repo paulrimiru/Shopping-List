@@ -1,4 +1,7 @@
 # Designs for shopping list app
+
+
+
 1. <b>Index.html</b>
     * This is the landing page for the app. the user can see various features that the app offers us such as
         - Create shopping lists
