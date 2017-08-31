@@ -19,10 +19,9 @@ To start development
 
 ### Running
 
-<b>To run the app locally<b><br>
+<b>To run the app locally</b><br>
     * Activate the app using command - 'source myapp/bin/activate'
-    * Run the application using - 'python run.py'
-        or on Visual studio code left click on run.py then click on run on terminal
+    * Run the application using - 'python run.py' or on Visual studio code left click on run.py then click on run on terminal
     * The app is stil in development so it will run with DEBUG=True in default
 
 ## Running the tests
