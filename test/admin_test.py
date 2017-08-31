@@ -32,7 +32,6 @@ class Admintest(unittest.TestCase):
         self.admin.update_user(
             myuser.email, newuser)
 
-        self.assertEqual(newuser.firstname
-                              , self.admin.get_user(newuser.email).firstname)
+        self.assertEqual(newuser.firstname, self.admin.get_user(newuser.email).firstname)
 if __name__ == '__main__':
     unittest.main()
