@@ -35,10 +35,6 @@ To run the tests
 * Flask - The web framework used
 * Materialize - For styling
 
-## Versioning
-
-We use GIT versioning
-
 ## Authors
 
 * **Paul Rimiru** - *Initial work* - [PaulKariukiRimiru](https://github.com/PaulKariukiRimiru)
