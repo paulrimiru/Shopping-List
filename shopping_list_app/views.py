@@ -6,6 +6,7 @@ from flask import render_template
 from shopping_list_app import APP
 
 @APP.route('/')
+@APP.route('/index')
 def index():
     """
     Render the index page
