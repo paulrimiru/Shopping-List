@@ -1,17 +1,54 @@
-# Shopping-List
+# Shopping List App
 
-[![Build Status](https://travis-ci.org/PaulKariukiRimiru/Shopping-List.svg?branch=feature-challenge%232)](https://travis-ci.org/PaulKariukiRimiru/Shopping)
+[![Build Status](https://travis-ci.org/PaulKariukiRimiru/Shopping-List.svg?branch=master)](https://travis-ci.org/PaulKariukiRimiru/Shopping-List)
 
-Application to help users keep track of items they want to spend money on and share their lists with friends
+Shopping list app is an application that helps users keep track of items they want to spend money on and share their lists with friends
 
-# Designs
-Designs folder contains the UI designs and their assets
-# Designs for shopping list app
-1. <b>Index.html</b>
-    * This is the landing page for the app. the user can see various features that the app offers us such as
-        - Create shopping lists
-        - Personalise shopping lists
-        - Share shopping lists
-        - Keep track of shopping lists
-2. <b>Login page</b>
-    * This is where the user decides whether to login to an existing account or sign up for a new account
+## Getting Started
+
+To start development
+    
+    * Create a virtual environment in your project  folder
+    * Use https://github.com/PaulKariukiRimiru/Shopping-List.git to clone the repository
+    * Thats it you are ready to go.
+
+### Prerequisites
+    * Ensure you have python installed in your machine
+    * Ensure that you have Git intalled in your machine
+    * Install virtualenv
+
+### Running
+
+<b>To run the app locally</b><br>
+    * Activate the app using command - 'source myapp/bin/activate'
+    * Run the application using - 'python run.py' or on Visual studio code left click on run.py then click on run on terminal
+    * The app is stil in development so it will run with DEBUG=True in default
+
+## Running the tests
+
+To run the tests
+    * Use command - nosetests tests/'testfile.py'
+        -replace testfile.py with the file you want to test
+
+## Built With
+
+* Flask - The web framework used
+* Materialize - For styling
+
+## Versioning
+
+We use GIT versioning
+
+## Authors
+
+* **Paul Rimiru** - *Initial work* - [PaulKariukiRimiru](https://github.com/PaulKariukiRimiru)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+N/A
+
+## Acknowledgments
+
+* Tests Inspiration from [esirK](https://github.com/esirK)
