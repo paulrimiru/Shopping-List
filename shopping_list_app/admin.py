@@ -22,4 +22,23 @@ class Admin(object):
     def get_user(self, email):
         """method returns specific user"""
         return self.users.get(email)
-    
+    def check_password(self, email, password):
+        """Checks if the password is correct"""
+        account_details = {}
+        if email in self.users:
+            user = self.users[email]
+            print(user.password)
+            if user.password == password:
+                account_details.update({"success":True})
+                account_details.update({"username":user.username})
+                return account_details
+            else:
+                account_details.update({"success":False})
+                account_details.update({"message":"Wrong password"})
+                return account_details
+        else:
+            account_details.update({"success":False})
+            account_details.update({"message":"Please sign up first"})
+            account_details.update({"has_account":False})
+            return account_details
+

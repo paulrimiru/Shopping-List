@@ -7,7 +7,8 @@ from shopping_list_app.shoppinglist import ShoppingList
 class UserListTest(unittest.TestCase):
     """Classs to test the manipulation of user list"""
     def setUp(self):
-        self.user = User("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
+        self.user = User()
+        self.user.instastiate_user("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
     def test_create_new_list(self):
         """method to test creation of a new list"""
         newlist = ShoppingList("Week1", "Shopping requireed in week 1 andela")

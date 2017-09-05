@@ -33,24 +33,25 @@
                              <div class="card">
                                 <div class="card-content">
                                    <span class="card-title black-text">Add a shopping list</span>
-                                   <form>
+                                   <form action="/createlist">
                                       <div class="row">
                                          <div class="input-field col s12">
-                                            <input id="name" type="text" class="validate">
+                                            <input id="name" type="text" class="validate" name="listname">
                                             <label for="name" class="active">What would you like to call your list?</label>
                                          </div>
                                       </div>
                                       <div class="row">
                                          <div class="input-field col s12">
-                                            <input id="description" type="text" class="validate">
+                                            <input id="description" type="text" class="validate" name="description">
                                             <label for="description">Describe your list</label>
                                          </div>
                                       </div>
+                                      <div class="card-action center">
+                                            <input type="submit" class="btn" value="Create list">
+                                         </div>
                                    </form>
                                 </div>
-                                <div class="card-action center">
-                                   <input type="submit" class="btn" value="Create list">
-                                </div>
+                                
                              </div>
                           </div>
                        </div>

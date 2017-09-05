@@ -14,7 +14,7 @@
           
         </head>
         <body id="authbody">
-                <nav class="white">
+                <nav class="white" style="height:20%">
                     <div class="nav-wrapper">
                         <a href="#" class="brand-logo center black-text">Shopping List app</a>
                         <ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -33,41 +33,42 @@
                              <div class="card">
                                 <div class="card-content">
                                    <span class="card-title black-text">Sign up</span>
-                                   <form>
+                                   <form method="post" action="/create_user">
                                         <div class="row">
                                             <div class="input-field col s6">
-                                                <input id="firstname" type="text" class="validate">
+                                                <input id="firstname" name="firstname" type="text" class="validate" required="required">
                                                 <label for="firstname" class="active">First name</label>
                                             </div>
                                     
                                             <div class="input-field col s6">
-                                                <input id="secondname" type="text" class="validate">
+                                                <input id="secondname" type="text" name="secondname" class="validate" required="required">
                                                 <label for="email" class="active">Second name</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input id="email" type="email" data-error="Enter valid email" data-success="Thank you, Email is valid" class="validate">
-                                                <label for="email" class="active">Email</label>
+                                                <input id="email" type="email" name="email" class="validate" required="required">
+                                                <label for="email" class="active" data-error="Enter valid email" data-success="Thank you, Email is valid" >Email</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input id="password" type="password" class="validate">
+                                                <input id="password" type="password" name="password" class="validate" required="required">
                                                 <label for="password">Password</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input id="conpassword" type="password" class="validate">
-                                                <label for="conpassword">Re-enter your password</label>
+                                                <input id="confpassword" type="password" class="validate" required="required">
+                                                <label for="confpassword">Re-enter your password</label>
                                             </div>
                                         </div>
+                                        <div class="card-action">
+                                            <button action="/create_user" type="submit" class="btn">Sign up</button>
+                                         </div>
                                    </form>
                                 </div>
-                                <div class="card-action">
-                                   <input type="submit" class="btn" value="Sign up">
-                                </div>
+                                
                              </div>
                           </div>
                        </div>

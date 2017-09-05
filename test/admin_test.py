@@ -8,27 +8,32 @@ class AdminTest(unittest.TestCase):
     """class containing tests for admin.py methods"""
     def setUp(self):
         self.admin = Admin()
-        self.user = User("Super", "user", "super@shoppilst.com", 123456789)
+        self.user = User()
+        self.user.instastiate_user("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
     def test_add_user(self):
         """test to add a user"""
-        myuser = User("Superior", "admin", "superadmin@shoppilst.com", 123456789)
+        myuser = User()
+        myuser.instastiate_user("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
         self.admin.add_user(myuser)
 
         self.assertEqual(1, len(self.admin.get_all_users()))
     def test_remove_user(self):
         """test to remove a user"""
-        reception = User("receptionist", "Frontdesk", "reception@shoppilst.com", 123456789)
+        reception = User()
+        reception.instastiate_user("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
         self.admin.add_user(reception)
         self.assertEqual(1, len(self.admin.get_all_users()))
-        self.admin.remove_user("reception@shoppilst.com")
+        self.admin.remove_user("mikepaul@shoppilist.com")
         self.assertEqual(0, len(self.admin.get_all_users()))
     def test_update_user(self):
         """test to determine if user is updated"""
-        myuser = User("Superior", "admin", "superadmin@shoppilst.com", 123456789)
+        myuser = User()
+        myuser.instastiate_user("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
         self.admin.add_user(myuser)
         self.assertEqual(1, len(self.admin.get_all_users()))
 
-        newuser = User("Minor", "admin", "minoradmin@shoppilst.com", 123456789)
+        newuser = User()
+        newuser.instastiate_user("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
         self.admin.update_user(
             myuser.email, newuser)
 
