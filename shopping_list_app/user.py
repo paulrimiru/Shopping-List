@@ -9,7 +9,7 @@ class User(object):
         self.username = "firstname" +" "+ "secondname"
         self.email = "email"
         self.password = "password"
-        self.userlists = []
+        self.userlists = {}
     def instastiate_user(self, firstname, secondname, email, password):
         """This method instantiates a user"""
         self.firstname = firstname
@@ -19,7 +19,7 @@ class User(object):
         self.password = password
     def create_list(self, mylist):
         """Creates a new user list"""
-        self.userlists.append({mylist.name: mylist})
+        self.userlists.update({mylist.name: mylist})
     def delete_list(self, name):
         """deletes a user list"""
         self.userlists.pop(name)

@@ -112,16 +112,16 @@ def authenticate():
 @authorisation
 def createlist():
     """creates a list for a user"""
-    retrieved_shoppinglist = []
+    retrieved_shoppinglist = {}
     if request.method == 'POST':
-        lname = request.passform['listname']
+        lname = request.form['listname']
         ldesc = request.form['description']
         shoppinglistobject = ShoppingList(lname, ldesc)
         USER.create_list(shoppinglistobject)
         retrieved_shoppinglist = USER.get_all()
-        
-        print (retrieved_shoppinglist)
-    return render_template("dashboard.html", user_shoppinglists=retrieved_shoppinglist,
+
+        print ("After insertion", retrieved_shoppinglist)
+    return render_template("dashboard.html", shoppinglistdict=retrieved_shoppinglist,
                            username=USER.username)
 @APP.route('/remove_lists', methods=['POST', 'GET'])
 @authorisation

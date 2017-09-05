@@ -37,14 +37,14 @@
                                                                         {% else %}
                                                                             Hey, you must be in the wrong place
                                                                         {% endif %}, here are your shopping lists</h5></li>
-                                            {% for shoppinglistobject in user_shoppinglists %}
+                                            {% for list_name in shoppinglistdict %}
                                                 <li class="collection-item">
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <div class="card">
                                                                 <div class="card-content black-text">
-                                                                    <span class="card-title"> {{ shoppinglistobject.name }} </span>
-                                                                    <p>{{ shoppinglistobject.description }}</p>    
+                                                                        <span class="card-title"> {{ shoppinglistdict[list_name].name }} </span>
+                                                                        <p>{{ shoppinglistdict[list_name].description }}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
