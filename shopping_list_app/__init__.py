@@ -12,3 +12,4 @@ from shopping_list_app import views
 
 # Load the config file
 APP.config.from_object('config')
+
