@@ -8,7 +8,7 @@ from shopping_list_app.shoppinglist import ShoppingList
 class ShoppingListTest(unittest.TestCase):
     """Claass for adding manipulating user lists"""
     def setUp(self):
-        self.firstlist = ShoppingList("FirstList", "this is my first list sir")
+        self.firstlist = ShoppingList("Mike@gmail.com","FirstList", "this is my first list sir")
         self.firstitem = Item("milk", "for the kid", 500)
     def test_adding_item(self):
         """method to add items"""
