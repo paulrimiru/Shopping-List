@@ -1,6 +1,7 @@
 # Shopping List App
 
 [![Build Status](https://travis-ci.org/PaulKariukiRimiru/Shopping-List.svg?branch=master)](https://travis-ci.org/PaulKariukiRimiru/Shopping-List)
+[![Coverage Status](https://coveralls.io/repos/github/PaulKariukiRimiru/Shopping-List/badge.svg)](https://coveralls.io/github/PaulKariukiRimiru/Shopping-List)
 
 Shopping list app is an application that helps users keep track of items they want to spend money on and share their lists with friends
 
