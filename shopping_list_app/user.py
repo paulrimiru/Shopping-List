@@ -26,7 +26,8 @@ class User(object):
         self.userlists.pop(name)
     def update_list(self, name, newlist):
         """updates a user list"""
-        self.userlists.update({name, newlist})
+        self.delete_list(name)
+        self.create_list(newlist)
     def get_list(self, name):
         """gets a specific list"""
         return self.userlists[name]
