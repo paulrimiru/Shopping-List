@@ -34,3 +34,6 @@ class User(object):
     def get_all(self):
         """gets all the users lists"""
         return self.userlists
+    def get_email(self):
+        """returns the value of the user email"""
+        return self.email

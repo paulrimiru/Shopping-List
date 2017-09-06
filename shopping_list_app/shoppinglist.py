@@ -22,3 +22,6 @@ class ShoppingList(object):
     def get_item(self, item_name):
         """returns a specific item in the list"""
         return self.items[item_name]
+    def get_email(self):
+        """returns the value of the user email"""
+        return self.useremail

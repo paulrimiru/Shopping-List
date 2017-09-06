@@ -117,19 +117,12 @@ def createlist():
         useremail = request.form['email']
         lname = request.form['listname']
         ldesc = request.form['description']
-
-        user = ADMIN.get_user(useremail)
-        shoppinglistobject = ShoppingList(user.email, lname, ldesc)
-        USER.create_list(shoppinglistobject)
-        shopping_lists = user.get_all()
         
-        for key, value in shopping_lists.items():
-            print(key)
-            print(USER.email)
-            print(USER.email)
-            print(value.useremail)
-            if value.useremail == USER.get_list(USER.username)[key].useremail:
-                user_shoppinglist.append(value)
+        user = ADMIN.get_user(useremail)
+        shoppinglist_object = ShoppingList(useremail,lname,ldesc)
+
+        user.create_list(shoppinglist_object)
+        user_shoppinglist = user.get_all()
     return render_template("dashboard.html", shoppinglist=user_shoppinglist,
                            username=USER.username, useremail=useremail)
 
