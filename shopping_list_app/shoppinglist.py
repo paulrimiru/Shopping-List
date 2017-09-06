@@ -1,7 +1,8 @@
 """This module manipulates items in users list"""
 class ShoppingList(object):
     """This class adds  and removes items from a list"""
-    def __init__(self, name, description):
+    def __init__(self, useremail, name, description):
+        self.useremail = useremail
         self.name = name
         self.description = description
         self.items = {}

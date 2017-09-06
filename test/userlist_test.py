@@ -16,6 +16,8 @@ class UserListTest(unittest.TestCase):
         self.user.create_list(newlist)
         self.assertEqual(1, len(self.user.get_all()))
         self.assertEqual("Week1", self.user.get_list(newlist.name).name)
+        newlist2 = ShoppingList("Week1", "Shopping requireed in week 1 andela")
+        self.assertEqual(False, self.user.create_list(newlist2)['Success'])
     def test_remove_list(self):
         """method to test deletion of a list"""
         list1 = ShoppingList("Week2", "Shopping requireed in week 2 andela")
@@ -36,3 +38,10 @@ class UserListTest(unittest.TestCase):
         self.user.update_list(list1.name, newlist1)
         self.assertEqual("Shopping requireed in week 4 andela"
                          , self.user.get_list("Week 2").description)
+    def test_additionofduplicatelist(self):
+        """Meothod to test addition of duplicates"""
+        list1 = ShoppingList("Week2", "Shopping requireed in week 2 andela")
+        list2 = ShoppingList("Week2", "Shopping requireed in week 2 andela")
+        self.user.create_list(list1)
+        self.assertEqual(False
+                         , self.user.create_list(list2)['Success'])

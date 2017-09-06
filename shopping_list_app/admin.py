@@ -7,8 +7,9 @@ class Admin(object):
         self.users = {}
 
     def add_user(self, user):
-        """Method adds new user"""
+        """Method adds new user"""   
         self.users.update({user.email:user})
+        print(self.users)
     def remove_user(self, email):
         """method removes a user"""
         self.users.pop(email)
@@ -21,13 +22,12 @@ class Admin(object):
         return self.users
     def get_user(self, email):
         """method returns specific user"""
-        return self.users.get(email)
+        return self.users[email]
     def check_password(self, email, password):
         """Checks if the password is correct"""
         account_details = {}
         if email in self.users:
             user = self.users[email]
-            print(user.password)
             if user.password == password:
                 account_details.update({"success":True})
                 account_details.update({"username":user.username})
