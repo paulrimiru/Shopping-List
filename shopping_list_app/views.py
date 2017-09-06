@@ -30,7 +30,7 @@ def index():
     """
     Render the index page
     """
-    return render_template("index.html", user = USER)
+    return render_template("index.html", user=USER)
 
 @APP.route('/dashboard/<username>')
 @authorisation
@@ -79,18 +79,16 @@ def authenticate():
         email = request.form['email']
         password = request.form['password']
         status = ADMIN.check_password(email, password)
-        
         if status['success']:
             session['email'] = email
             session['signed_in'] = True
             user = ADMIN.get_user(email)
             user_shoppingdict = user.get_all()
-            print(user_shoppingdict.get('userlists'))
             for shoppinglist_name in user_shoppingdict:
                 if user_shoppingdict.get(shoppinglist_name).useremail == email:
                     user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
             return render_template("dashboard.html", username=status['username'],
-                                    shoppinglist=user_shoppinglist)
+                                   shoppinglist=user_shoppinglist)
         else:
             if status.get('has_account'):
                 return status["message"]
@@ -104,7 +102,7 @@ def create_shoppinglist():
     """
     Render view for creating new shopping lists
     """
-    return render_template("create_shoppinglist.html",useremail=session['email'])
+    return render_template("create_shoppinglist.html", useremail=session['email'])
 
 @APP.route('/createlist', methods=['POST', 'GET'])
 @authorisation
@@ -115,17 +113,15 @@ def createlist():
         user_email = request.form['email']
         lname = request.form['listname']
         ldesc = request.form['description']
-        
-        shoppinglist_object = ShoppingList(user_email,lname,ldesc)
+        shoppinglist_object = ShoppingList(user_email, lname, ldesc)
 
         ADMIN.get_user(user_email).create_list(shoppinglist_object)
         user_shoppingdict = ADMIN.get_user(user_email).get_all()
-        
         for shoppinglist_name in user_shoppingdict:
             if user_shoppingdict.get(shoppinglist_name).useremail == user_email:
                 user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
 
-    return render_template("dashboard.html", shoppinglist=user_shoppinglist,
+    return render_template("dashboard.html", shoppinglist=user_shoppinglist, list_name=lname,
                            username=USER.username, useremail=user_email)
 
 @APP.route('/edit_shoppinglist/<list_name>/')
@@ -135,8 +131,7 @@ def edit_shoppinglist(list_name):
     Render view for editing shopping lists
     """
     shoppinglist = USER.get_list(list_name)
-
-    return render_template("edit_shoppinglist.html", shoppinglist=shoppinglist.display_list(),
+    return render_template("edit_shoppinglist.html", description=shoppinglist.description,
                            list_name=list_name)
 
 @APP.route('/remove_lists/<list_name>/', methods=['POST', 'GET'])
@@ -158,12 +153,13 @@ def remove_list(list_name):
 def update_list():
     """Method updates the list details"""
     if request.method == 'POST':
-        listnname = request.args.get('oldname')
-        listnewname = request.args.get('newname')
-        listdescription = request.args.get('description')
+        listnname = request.form["current"]
+        listnewname = request.form["listname"]
+        listdescription = request.form["description"]
         newshoppinglist = ShoppingList(USER.email, listnewname, listdescription)
         USER.update_list(listnname, newshoppinglist)
-
+        shoppinglist = USER.get_list(listnewname)
+    return render_template("dashboard.html", shoppinglist=shoppinglist, username=USER.username)
 #CRUD and other logic for items
 @APP.route('/add_itemstolist/<list_name>')
 @authorisation
@@ -180,7 +176,6 @@ def additems_tolist(list_name):
 def add_items():
     """Adds items to list"""
     if request.method == 'POST':
-        
         listname = request.form['listname']
         name = request.form['name']
         description = request.form['description']
@@ -191,7 +186,7 @@ def add_items():
         list_.add_item(name, item)
         shoppinglist = USER.get_list(listname)
     return render_template("additems_tolist.html", list_name=listname,
-                           shoppinglist=shoppinglist.display_list())
+                           shoppinglist=shoppinglist.display_list(), username=USER.username)
 
 @APP.route('/add_itemsview/<list_name>', methods=['POST', 'GET'])
 @authorisation
@@ -206,7 +201,7 @@ def remove_item(item_name, list_name):
     list_ = USER.get_list(list_name)
     list_.remove_item(item_name)
     return render_template("additems_tolist.html", list_name=list_name,
-                           shoppinglist=list_.display_list()) 
+                           shoppinglist=list_.display_list())
 # custom error pages
 @APP.errorhandler(404)
 def page_not_found_error(error):

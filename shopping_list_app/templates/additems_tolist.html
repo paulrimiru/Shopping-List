@@ -18,7 +18,7 @@
               <div class="nav-wrapper">
                 <a href="#" class="brand-logo center black-text">Shopping List app</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="/dashboard" class=" black-text">Home</a></li>
+                    <li><a href="/dashboard/" class=" black-text">Home</a></li>
                     <li><a href="/index" class=" black-text">Log out</a></li>
                 </ul>
               </div>
@@ -39,18 +39,18 @@
                                         </div>
                                         <div class="row">
                                                 <div class="input-field col s6">
-                                                    <input id="name" type="text" name="name" class="validate">
+                                                    <input id="name" type="text" name="name" class="validate" required>
                                                     <label for="name" class="active">Item name</label>
                                                 </div>
                                                 
                                                 <div class="input-field col s6">
-                                                        <input id="price" type="text" name="price" class="validate">
+                                                        <input id="price" type="text" name="price" class="validate" required>
                                                         <label for="price" class="active">Item price</label>
                                                 </div>
                                         </div>
                                         <div class="row">
                                                 <div class="input-field col s12">
-                                                        <input id="description" type="text" name="description" class="validate">
+                                                        <input id="description" type="text" name="description" class="validate" required>
                                                         <label for="description" class="active">Item description</label>
                                                 </div>
                                                 <input type="submit" class="btn center col s4" value="Add new Item">
@@ -66,7 +66,7 @@
                                                                 <p>Price : {{ shoppinglist[itemname].price }}</p>
                                                         </div>
                                                         <div class="card-action">
-                                                            <a href="/remove_items/{{ shoppinglist[itemname].name }}/{{ list_name }}" class="material-icons">Delete</a>
+                                                            <a href="/remove_items/{{ itemname }}/{{ list_name }}" ><i class="material-icons">delete</i></a>
                                                           </div>
                                                     </div>
                                                 {% endfor %}

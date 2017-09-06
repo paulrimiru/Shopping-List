@@ -21,7 +21,6 @@ class User(object):
         else:
             status.update({"Success":True})
             self.userlists.update({mylist.name: mylist})
-            print(vars(mylist))
     def delete_list(self, name):
         """deletes a user list"""
         self.userlists.pop(name)
@@ -36,4 +35,3 @@ class User(object):
     def get_all(self):
         """gets all the users lists"""
         return self.userlists
-    
