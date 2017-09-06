@@ -9,4 +9,7 @@ notifications:
   email:
     on_success: change
 # command to run tests
-script: nosetests
+script: 
+  nosetests --with-coverage --cover-package=tests && coverage report
+after_success:
+  coveralls
