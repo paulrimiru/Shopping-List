@@ -73,6 +73,7 @@ def create_user():
 @APP.route('/authenticate', methods=['POST', 'GET'])
 def authenticate():
     """Authenticates the user before login"""
+    user_shoppinglist = []
     if request.method == 'POST':
 
         email = request.form['email']
@@ -82,17 +83,14 @@ def authenticate():
         if status['success']:
             session['email'] = email
             session['signed_in'] = True
-            USER = ADMIN.get_user(email)
-            shopping_lists = USER.get_all()
-            
-            user_shoppinglist = []
-            for key, value in shopping_lists.items():
-                print(key)
-                print(email)
-                print(value.useremail)
-                if key == email:
-                    user_shoppinglist.append(value)
-            return render_template("dashboard.html", username=status['username'], shoppinglist = user_shoppinglist)
+            user = ADMIN.get_user(email)
+            user_shoppingdict = user.get_all()
+            print(user_shoppingdict.get('userlists'))
+            for shoppinglist_name in user_shoppingdict:
+                if user_shoppingdict.get(shoppinglist_name).useremail == email:
+                    user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
+            return render_template("dashboard.html", username=status['username'],
+                                    shoppinglist=user_shoppinglist)
         else:
             if status.get('has_account'):
                 return status["message"]
@@ -114,17 +112,21 @@ def createlist():
     """creates a list for a user"""
     user_shoppinglist = []
     if request.method == 'POST':
-        useremail = request.form['email']
+        user_email = request.form['email']
         lname = request.form['listname']
         ldesc = request.form['description']
         
-        user = ADMIN.get_user(useremail)
-        shoppinglist_object = ShoppingList(useremail,lname,ldesc)
+        shoppinglist_object = ShoppingList(user_email,lname,ldesc)
 
-        user.create_list(shoppinglist_object)
-        user_shoppinglist = user.get_all()
+        ADMIN.get_user(user_email).create_list(shoppinglist_object)
+        user_shoppingdict = ADMIN.get_user(user_email).get_all()
+        
+        for shoppinglist_name in user_shoppingdict:
+            if user_shoppingdict.get(shoppinglist_name).useremail == user_email:
+                user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
+
     return render_template("dashboard.html", shoppinglist=user_shoppinglist,
-                           username=USER.username, useremail=useremail)
+                           username=USER.username, useremail=user_email)
 
 @APP.route('/edit_shoppinglist/<list_name>/')
 @authorisation
