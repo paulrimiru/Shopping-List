@@ -19,10 +19,9 @@ def authorisation(func):
     @wraps(func)
     def auth(*args, **kargs):
         """checks for if the user is logged in through the session"""
-        if session['signed_in']:
-            return func(*args, **kargs)
-        else:
+        if not session['signed_in']:
             return redirect(url_for('login'))
+        return func(*args, **kargs)
     return auth
 @APP.route('/')
 @APP.route('/index')
@@ -39,7 +38,6 @@ def dashboard(username):
     Render the user dashboard
     """
     shoppinglists = USER.get_all()
-    print(shoppinglists)
     return render_template("dashboard.html", shoppinglistdict=shoppinglists, username=username)
 
 #CRUD and other logic for user
@@ -49,6 +47,12 @@ def login():
     Render login page used to sign in
     """
     return render_template("login.html")
+
+@APP.route('/logout/')
+def logout():
+    """LOgs out user"""
+    del session['signed_in']
+    return render_template("Index.html")
 
 @APP.route('/register/')
 def register():

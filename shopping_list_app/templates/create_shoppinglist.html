@@ -19,7 +19,7 @@
                                 <div class="nav-wrapper">
                                   <a href="#" class="brand-logo center black-text">Shopping List app</a>
                                   <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                      <li><a href="/dashboard" class=" black-text">Home</a></li>
+                                      <li><a href="/index" class=" black-text">Home</a></li>
                                       <li><a href="/login" class=" black-text">Log out</a></li>
                                   </ul>
                                 </div>
@@ -37,17 +37,17 @@
                                                    <form action="/createlist" method="POST">
                                                       <div class="row">
                                                             <div class="input-field col s12">
-                                                                    <input id="email" type="email" class="validate" name="email" value="{{ useremail }}" >
+                                                                    <input id="email" type="email" class="validate" name="email" value="{{ useremail }}" required>
                                                                     <label for="email" class="active">User email</label>
                                                             </div>
                                                             <div class="input-field col s12">
-                                                                <input id="name" type="text" class="validate" name="listname">
+                                                                <input id="name" type="text" class="validate" name="listname" required>
                                                                 <label for="name" class="active">What would you like to call your list?</label>
                                                             </div>
                                                       </div>
                                                       <div class="row">
                                                          <div class="input-field col s12">
-                                                            <input id="description" type="text" class="validate" name="description">
+                                                            <input id="description" type="text" class="validate" name="description" required>
                                                             <label for="description">Describe your list</label>
                                                          </div>
                                                       </div>
