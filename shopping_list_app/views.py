@@ -124,19 +124,19 @@ def createlist():
     return render_template("dashboard.html", shoppinglist=user_shoppinglist, list_name=lname,
                            username=USER.username, useremail=user_email)
 
-@APP.route('/edit_shoppinglist/<list_name>/')
+@APP.route('/edit_shoppinglist/<username>/<list_name>/')
 @authorisation
-def edit_shoppinglist(list_name):
+def edit_shoppinglist(username, list_name):
     """
     Render view for editing shopping lists
     """
     shoppinglist = USER.get_list(list_name)
     return render_template("edit_shoppinglist.html", description=shoppinglist.description,
-                           list_name=list_name)
+                           list_name=list_name, username=username)
 
-@APP.route('/remove_lists/<list_name>/', methods=['POST', 'GET'])
+@APP.route('/remove_lists/<username>/<list_name>/', methods=['POST', 'GET'])
 @authorisation
-def remove_list(list_name):
+def remove_list(username, list_name):
     """Removes lists from users"""
     USER.delete_list(list_name)
     shopping_lists = USER.get_all()
@@ -146,7 +146,7 @@ def remove_list(list_name):
         if shopping_lists[key].useremail == USER.email:
             user_shoppinglist.append(shopping_lists[key])
     return render_template("dashboard.html", shoppinglist=user_shoppinglist,
-                           username=USER.username)
+                           username=username)
 
 @APP.route('/update_list', methods=['POST', 'GET'])
 @authorisation
@@ -156,20 +156,28 @@ def update_list():
         listnname = request.form["current"]
         listnewname = request.form["listname"]
         listdescription = request.form["description"]
+
         newshoppinglist = ShoppingList(USER.email, listnewname, listdescription)
         USER.update_list(listnname, newshoppinglist)
-        shoppinglist = USER.get_list(listnewname)
-    return render_template("dashboard.html", shoppinglist=shoppinglist, username=USER.username)
+
+        shopping_lists = USER.get_all()
+        user_shoppinglist = []
+
+        for key in shopping_lists:
+            if shopping_lists[key].useremail == USER.email:
+                user_shoppinglist.append(shopping_lists[key])
+    return render_template("dashboard.html", shoppinglist=user_shoppinglist, username=USER.username)
 #CRUD and other logic for items
-@APP.route('/add_itemstolist/<list_name>')
+@APP.route('/add_itemstolist/<username>/<list_name>')
 @authorisation
-def additems_tolist(list_name):
+def additems_tolist(username, list_name):
     """
     Render view for editing shopping lists
     """
     shoppinglist = USER.get_list(list_name)
     return render_template("additems_tolist.html",
-                           shoppinglist=shoppinglist.display_list(), list_name=list_name)
+                           shoppinglist=shoppinglist.display_list(),
+                           list_name=list_name, username=username)
 
 @APP.route('/add_items', methods=['POST', 'GET'])
 @authorisation
@@ -188,11 +196,12 @@ def add_items():
     return render_template("additems_tolist.html", list_name=listname,
                            shoppinglist=shoppinglist.display_list(), username=USER.username)
 
-@APP.route('/add_itemsview/<list_name>', methods=['POST', 'GET'])
+@APP.route('/add_itemsview/<username>/<list_name>', methods=['POST', 'GET'])
 @authorisation
-def additems_view(list_name):
+def additems_view(username, list_name):
     """Renders the page to add items to list"""
-    return render_template("additems_tolist.html", list_name=list_name)
+    
+    return render_template("additems_tolist.html", list_name=list_name, username=username)
 
 @APP.route('/remove_items/<item_name>/<list_name>', methods=['POST', 'GET'])
 @authorisation

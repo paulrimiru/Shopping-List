@@ -47,9 +47,9 @@
                                                                         <p>{{ list_object.description }}</p>
                                                                 </div>
                                                                 <div class="card-action row">
-                                                                    <a href="/edit_shoppinglist/{{ list_name }}" ><i class="material-icons">create</i></a>
-                                                                    <a href="/add_itemsview/{{ list_name }}" ><i class="material-icons">add</i></a>
-                                                                    <a href="/remove_lists/{{ list_name }}" ><i class="material-icons">delete</i></a>
+                                                                    <a href="/edit_shoppinglist/{{username}}/{{ list_object.name }}" ><i class="material-icons">create</i></a>
+                                                                    <a href="/add_itemsview/{{username}}/{{ list_object.name }}" ><i class="material-icons">add</i></a>
+                                                                    <a href="/remove_lists/{{username}}/{{ list_object.name }}" ><i class="material-icons">delete</i></a>
                                                                   </div>
                                                             </div>
                                                         </div>
@@ -58,12 +58,13 @@
                                             {% endfor %}
                                         </ul>
                                     </div>
-                                    <div class="fixed-action-btn toolbar">
+                                    <div class="fixed-action-btn click-to-toggle">
                                         <a class="btn-floating btn-large orange">
-                                            <i class="large material-icons">mode_edit</i>
+                                            <i class="large material-icons">menu</i>
                                         </a>
                                         <ul>
-                                            <li class="waves-effect waves-light"><a href="/create_shoppinglist/"><i class="material-icons">add_shopping_cart</i></a></li>
+                                            <li class="waves-effect waves-light">
+                                                <a href="/create_shoppinglist/" class="btn-floating blue"><i class="material-icons">add_shopping_cart</i></a></li>
                                         </ul>
                                     </div>
                                  </div>
