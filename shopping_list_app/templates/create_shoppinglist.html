@@ -14,49 +14,60 @@
           
         </head>
         <body id="authbody">
-            <nav class="white">
-              <div class="nav-wrapper">
-                <a href="#" class="brand-logo center black-text">Shopping List app</a>
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li><a href="/dashboard" class=" black-text">Home</a></li>
-                    <li><a href="/login" class=" black-text">Log out</a></li>
-                </ul>
-              </div>
-            </nav>
+                <div class="row">
+                        <nav class="white">
+                                <div class="nav-wrapper">
+                                  <a href="#" class="brand-logo center black-text">Shopping List app</a>
+                                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                      <li><a href="/dashboard" class=" black-text">Home</a></li>
+                                      <li><a href="/login" class=" black-text">Log out</a></li>
+                                  </ul>
+                                </div>
+                        </nav>
+                </div>
+                <div class="row">
+                        <div class="valign-wrapper" style="width:100%;height:80%;">
+                                <div class="valign" style="width:100%;">
+                                    <div class="container">
+                                       <div class="row">
+                                          <div class="col s12 m8 offset-m3">
+                                             <div class="card">
+                                                <div class="card-content">
+                                                   <span class="card-title black-text">Add a shopping list</span>
+                                                   <form action="/createlist" method="POST">
+                                                      <div class="row">
+                                                            <div class="input-field col s12">
+                                                                    <input id="email" type="email" class="validate" name="email" value="{{ useremail }}" >
+                                                                    <label for="email" class="active">User email</label>
+                                                            </div>
+                                                            <div class="input-field col s12">
+                                                                <input id="name" type="text" class="validate" name="listname">
+                                                                <label for="name" class="active">What would you like to call your list?</label>
+                                                            </div>
+                                                      </div>
+                                                      <div class="row">
+                                                         <div class="input-field col s12">
+                                                            <input id="description" type="text" class="validate" name="description">
+                                                            <label for="description">Describe your list</label>
+                                                         </div>
+                                                      </div>
+                                                      <div class="card-action center">
+                                                        <input type="submit" class="btn" value="Create list">
+                                                      </div>
+                                                   </form>
+                                                </div>
+                                                
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+            
             
     
-            <div class="valign-wrapper" style="width:100%;height:80%;">
-                <div class="valign" style="width:100%;">
-                    <div class="container">
-                       <div class="row">
-                          <div class="col s12 m8 offset-m3">
-                             <div class="card">
-                                <div class="card-content">
-                                   <span class="card-title black-text">Add a shopping list</span>
-                                   <form>
-                                      <div class="row">
-                                         <div class="input-field col s12">
-                                            <input id="name" type="text" class="validate">
-                                            <label for="name" class="active">What would you like to call your list?</label>
-                                         </div>
-                                      </div>
-                                      <div class="row">
-                                         <div class="input-field col s12">
-                                            <input id="description" type="text" class="validate">
-                                            <label for="description">Describe your list</label>
-                                         </div>
-                                      </div>
-                                   </form>
-                                </div>
-                                <div class="card-action center">
-                                   <input type="submit" class="btn" value="Create list">
-                                </div>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                </div>
-            </div>
+            
         </body>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

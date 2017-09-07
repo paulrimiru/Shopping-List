@@ -6,13 +6,21 @@ class User(object):
     def __init__(self, firstname, secondname, email, password):
         self.firstname = firstname
         self.secondname = secondname
-        self.username = firstname + secondname
+        self.username = firstname +" "+ secondname
         self.email = email
         self.password = password
         self.userlists = {}
+
     def create_list(self, mylist):
         """Creates a new user list"""
-        self.userlists.update({mylist.name: mylist})
+        status = {}
+        if mylist.name in self.userlists:
+            status.update({"Success":False})
+            status.update({"message":"List with same name exists"})
+            return status
+        else:
+            status.update({"Success":True})
+            self.userlists.update({mylist.name: mylist})
     def delete_list(self, name):
         """deletes a user list"""
         self.userlists.pop(name)
@@ -23,6 +31,7 @@ class User(object):
     def get_list(self, name):
         """gets a specific list"""
         return self.userlists[name]
+
     def get_all(self):
         """gets all the users lists"""
         return self.userlists

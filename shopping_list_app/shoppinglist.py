@@ -1,7 +1,8 @@
 """This module manipulates items in users list"""
 class ShoppingList(object):
     """This class adds  and removes items from a list"""
-    def __init__(self, name, description):
+    def __init__(self, useremail, name, description):
+        self.useremail = useremail
         self.name = name
         self.description = description
         self.items = {}
@@ -21,3 +22,6 @@ class ShoppingList(object):
     def get_item(self, item_name):
         """returns a specific item in the list"""
         return self.items[item_name]
+    def get_email(self):
+        """returns the value of the user email"""
+        return self.useremail
