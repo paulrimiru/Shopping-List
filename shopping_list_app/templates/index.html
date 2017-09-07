@@ -17,111 +17,115 @@
 
   <body class="white"/>
 
+  <div class="row">
+        <nav>
+                <div class="nav-wrapper white">
+                    <a href="#" class="brand-logo black-text">Shopping list app</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        {% if user %}
+                            <li><a href="/login" class=" black-text">Login</a></li>
+                            <li><a href="/register" class=" black-text">Sign up</a></li>
+                            <li><a href="/dashboard/{{ user.username }}" class=" black-text">Profile</a></li>
+                        {% else %}
+                            <li><a href="/login" class=" black-text">Login</a></li>
+                            <li><a href="/register" class=" black-text">Sign up</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+  </div>
+  <div class="row">
+        <div class="parallax-container">
+                <div class="parallax"><img src="{{ url_for('static', filename='images/test2.jpg') }}"></div>
+            </div>
+        
+            <div class="section white animated fadeInUp">
+                <div class="row container">
+                    <h2 class=orange-text text accent-4"header">What is shopping List app?</h2>
+                    <p class="grey-text text-darken-3 lighten-3">Shopping list app is an innovative solution that enables its users to keep track of their purchasing habits through adding shopping lists to their profile. 
+                        Users also share these shopping lists with each other.</p>
+                </div>
+            </div>
+        
+            <div class="parallax-container">
+                <div class="parallax"><img src="{{ url_for('static', filename='images/test2.jpg') }}"></div>
+            </div>
+                    
+            <footer class="page-footer white">
+                <div class="row">
+                    <div class="col s12 m6 l3">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{ url_for('static', filename='images/test.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator orange-text text accent-4">Create shoppping lists<i class="material-icons right">more_vert</i></span>
+                                <p><a href="/create_shoppinglist">Lets do this...</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Create shoppping lists<i class="material-icons right">close</i></span>
+                                <p>Shopping list app allows users to create their own personalized shopping list, from a wide range of 
+                                    product categories that varies from clothing, electronics to food stuffs. <b>You list it we'll help you keep track</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>            
+                    <div class="col s12 m6 l3">
+                        <div class="card">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{ url_for('static', filename='images/test.jpg') }}">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator orange-text text accent-4">Keep track of your shopping<i class="material-icons right">more_vert</i></span>
+                                <p><a href="/dashboard">Take me there...</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">Keep track of your shopping<i class="material-icons right">close</i></span>
+                                <p>Shopping list app helps users keep track of their shopping lists, and be able to discover purchasing their purchasing
+                                    and vital items in that require attention.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="{{ url_for('static', filename='images/test.jpg') }}">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator orange-text text accent-4">Personalize shopping lists<i class="material-icons right">more_vert</i></span>
+                                    <p><a href="/edit_shoppinglist">Take a look...</a></p>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">Personalize shoping lists<i class="material-icons right">close</i></span>
+                                    <p>Shopping list app in addition to creating and tracking your shopping lists allows you to make changes to your own shopping lists,
+                                        allowing for a more freedom and flexibility in your budget.
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                            <div class="card">
+                                <div class="card-image waves-effect waves-block waves-light">
+                                    <img class="activator" src="{{ url_for('static', filename='images/test.jpg') }}">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title activator orange-text text accent-4">Share with Shopping lists friends<i class="material-icons right">more_vert</i></span>
+                                    <p><a href="#">Take a look...</a></p>
+                                </div>
+                                <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">Share shopping lists<i class="material-icons right">close</i></span>
+                                    <p>Shopping list app allows you to share your shopping list with friends and vise versa. 
+                                        Here at shoppping List we believe in sharing ideas and promoting diversity.
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+  </div>
+  
+
     
-  <nav>
-        <div class="nav-wrapper white">
-            <a href="#" class="brand-logo black-text">Shopping list app</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                {% if user %}
-                    <li><a href="/login" class=" black-text">Login</a></li>
-                    <li><a href="/register" class=" black-text">Sign up</a></li>
-                    <li><a href="/dashboard/{{ user.username }}" class=" black-text">Profile</a></li>
-                {% else %}
-                    <li><a href="/login" class=" black-text">Login</a></li>
-                    <li><a href="/register" class=" black-text">Sign up</a></li>
-                    <li><a href="/dashboard" class=" black-text">Profile</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-
-    <div class="parallax-container">
-        <div class="parallax"><img src="{{ url_for('static', filename='images/test2.jpg') }}"></div>
-    </div>
-
-    <div class="section white animated fadeInUp">
-        <div class="row container">
-            <h2 class=orange-text text accent-4"header">What is shopping List app?</h2>
-            <p class="grey-text text-darken-3 lighten-3">Shopping list app is an innovative solution that enables its users to keep track of their purchasing habits through adding shopping lists to their profile. 
-                Users also share these shopping lists with each other.</p>
-        </div>
-    </div>
-
-    <div class="parallax-container">
-        <div class="parallax"><img src="{{ url_for('static', filename='images/test2.jpg') }}"></div>
-    </div>
-            
-    <footer class="page-footer white">
-        <div class="row">
-            <div class="col s12 m6 l3">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ url_for('static', filename='images/test.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator orange-text text accent-4">Create shoppping lists<i class="material-icons right">more_vert</i></span>
-                        <p><a href="/create_shoppinglist">Lets do this...</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Create shoppping lists<i class="material-icons right">close</i></span>
-                        <p>Shopping list app allows users to create their own personalized shopping list, from a wide range of 
-                            product categories that varies from clothing, electronics to food stuffs. <b>You list it we'll help you keep track</b>
-                        </p>
-                    </div>
-                </div>
-            </div>            
-            <div class="col s12 m6 l3">
-                <div class="card">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ url_for('static', filename='images/test.jpg') }}">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator orange-text text accent-4">Keep track of your shopping<i class="material-icons right">more_vert</i></span>
-                        <p><a href="/dashboard">Take me there...</a></p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Keep track of your shopping<i class="material-icons right">close</i></span>
-                        <p>Shopping list app helps users keep track of their shopping lists, and be able to discover purchasing their purchasing
-                            and vital items in that require attention.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m6 l3">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ url_for('static', filename='images/test.jpg') }}">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator orange-text text accent-4">Personalize shopping lists<i class="material-icons right">more_vert</i></span>
-                            <p><a href="/edit_shoppinglist">Take a look...</a></p>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Personalize shoping lists<i class="material-icons right">close</i></span>
-                            <p>Shopping list app in addition to creating and tracking your shopping lists allows you to make changes to your own shopping lists,
-                                allowing for a more freedom and flexibility in your budget.
-                            </p>
-                        </div>
-                    </div>
-            </div>
-            <div class="col s12 m6 l3">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ url_for('static', filename='images/test.jpg') }}">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title activator orange-text text accent-4">Share with Shopping lists friends<i class="material-icons right">more_vert</i></span>
-                            <p><a href="#">Take a look...</a></p>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Share shopping lists<i class="material-icons right">close</i></span>
-                            <p>Shopping list app allows you to share your shopping list with friends and vise versa. 
-                                Here at shoppping List we believe in sharing ideas and promoting diversity.
-                            </p>
-                        </div>
-                    </div>
-            </div>
-        </div>
     </footer>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

@@ -39,6 +39,7 @@ def dashboard(username):
     Render the user dashboard
     """
     shoppinglists = USER.get_all()
+    print(shoppinglists)
     return render_template("dashboard.html", shoppinglistdict=shoppinglists, username=username)
 
 #CRUD and other logic for user

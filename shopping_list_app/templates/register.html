@@ -14,7 +14,8 @@
           
         </head>
         <body id="authbody">
-                <nav class="white" style="height:20%">
+            <div class="row">
+                <nav class="white">
                     <div class="nav-wrapper">
                         <a href="#" class="brand-logo center black-text">Shopping List app</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -23,58 +24,60 @@
                         </ul>
                     </div>
                 </nav>
-            
-    
-            <div class="valign-wrapper" style="width:100%;height:80%;">
-                <div class="valign" style="width:100%;">
-                    <div class="container">
-                       <div class="row">
-                          <div class="col s12 m8 offset-m3">
-                             <div class="card">
-                                <div class="card-content">
-                                   <span class="card-title black-text">Sign up</span>
-                                   <form method="post" action="/create_user">
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input id="firstname" name="firstname" type="text" class="validate" required="required">
-                                                <label for="firstname" class="active">First name</label>
-                                            </div>
-                                    
-                                            <div class="input-field col s6">
-                                                <input id="secondname" type="text" name="secondname" class="validate" required="required">
-                                                <label for="email" class="active">Second name</label>
-                                            </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12 m8 offset-m3">
+                            <div class="card">
+                            <div class="card-content">
+                                <span class="card-title black-text">Sign up</span>
+                                <form method="post" action="/create_user">
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input id="firstname" name="firstname" type="text" class="validate" required="required">
+                                            <label for="firstname" class="active">First name</label>
                                         </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="email" type="email" name="email" class="validate" required="required">
-                                                <label for="email" class="active" data-error="Enter valid email" data-success="Thank you, Email is valid" >Email</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="password" type="password" name="password" class="validate" required="required">
-                                                <label for="password">Password</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <input id="confpassword" type="password" class="validate" required="required">
-                                                <label for="confpassword">Re-enter your password</label>
-                                            </div>
-                                        </div>
-                                        <div class="card-action">
-                                            <button action="/create_user" type="submit" class="btn">Sign up</button>
-                                         </div>
-                                   </form>
-                                </div>
                                 
-                             </div>
-                          </div>
-                       </div>
+                                        <div class="input-field col s6">
+                                            <input id="secondname" type="text" name="secondname" class="validate" required="required">
+                                            <label for="email" class="active">Second name</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="email" type="email" name="email" class="validate" required="required">
+                                            <label for="email" class="active" data-error="Enter valid email" data-success="Thank you, Email is valid" >Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="password" type="password" name="password" class="validate" required="required" minLength=6>
+                                            <label for="password">Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="confpassword" type="password" class="validate" required="required" minLength=6>
+                                            <label for="confpassword">Re-enter your password</label>
+                                        </div>
+                                    </div>
+                                    <div class="card-action">
+                                        <button action="/create_user" type="submit" class="btn">Sign up</button>
+                                        </div>
+                                </form>
+                            </div>
+                            
+                            </div>
+                        </div>
                     </div>
                 </div>
+                    
             </div>
+                
+            
+    
+            
         </body>
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
