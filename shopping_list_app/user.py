@@ -20,7 +20,9 @@ class User(object):
             return status
         else:
             status.update({"Success":True})
+            status.update({"message":"List added successfully"})
             self.userlists.update({mylist.name: mylist})
+            return status
     def delete_list(self, name):
         """deletes a user list"""
         self.userlists.pop(name)

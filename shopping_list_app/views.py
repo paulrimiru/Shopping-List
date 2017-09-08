@@ -36,6 +36,8 @@ def dashboard(username, user_email):
     """
     Render the user dashboard
     """
+    global USER
+    USER = ADMIN.get_user(user_email)
     user_shoppinglist = []
     user_shoppingdict = USER.get_all()
     for shoppinglist_name in user_shoppingdict:
@@ -100,8 +102,8 @@ def authenticate():
                 if user_shoppingdict.get(shoppinglist_name).useremail == email:
                     user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
             flash(str(status["message"]))
-            return render_template("dashboard.html", username=status['username'],
-                                   shoppinglist=user_shoppinglist)
+            return redirect(url_for('dashboard', username=status['username'],
+                                    shoppinglist=user_shoppinglist, user_email=email))
         else:
             if status.get('has_account'):
                 flash(str(status.get("message")))
@@ -130,16 +132,14 @@ def createlist():
         lname = request.form['listname']
         ldesc = request.form['description']
         shoppinglist_object = ShoppingList(user_email, lname, ldesc)
-
+        USER = ADMIN.get_user(user_email)
         status = ADMIN.get_user(user_email).create_list(shoppinglist_object)
         if status.get("Success"):
             flash(str(status['message']))
-            user_shoppingdict = ADMIN.get_user(user_email).get_all()
-            for shoppinglist_name in user_shoppingdict:
-                if user_shoppingdict.get(shoppinglist_name).useremail == user_email:
-                    user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
-            
-
+        user_shoppingdict = ADMIN.get_user(user_email).get_all()
+        for shoppinglist_name in user_shoppingdict:
+            if user_shoppingdict.get(shoppinglist_name).useremail == user_email:
+                user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
     return render_template("dashboard.html", shoppinglist=user_shoppinglist, list_name=lname,
                            username=USER.username, useremail=user_email)
 
@@ -219,7 +219,6 @@ def add_items():
 @authorisation
 def additems_view(username, list_name):
     """Renders the page to add items to list"""
-    
     return render_template("additems_tolist.html", list_name=list_name, username=username)
 
 @APP.route('/remove_items/<item_name>/<list_name>', methods=['POST', 'GET'])
