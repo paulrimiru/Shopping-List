@@ -37,6 +37,7 @@ To start development
 ## Running the tests
 
 To run the tests
+    
     * Use command   nosetests --with-coverage --cover-package=test && coverage report
 
 
