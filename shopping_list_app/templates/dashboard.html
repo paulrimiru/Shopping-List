@@ -48,9 +48,10 @@
                                                                 <p>{{ list_object.description }}</p>
                                                         </div>
                                                         <div class="card-action row">
-                                                            <a href="/edit_shoppinglist/{{username}}/{{ list_object.name }}" ><i class="material-icons">create</i></a>
-                                                            <a href="/add_itemsview/{{username}}/{{ list_object.name }}" ><i class="material-icons">add</i></a>
-                                                            <a href="/remove_lists/{{username}}/{{ list_object.name }}" ><i class="material-icons">delete</i></a>
+                                                            <a href="/view_items/{{ list_object.name }}/{{email}}" ><i class="material-icons">view list</i></a>  
+                                                            <a href="/edit_shoppinglist/{{username}}/{{ list_object.name }}/{{email}}" ><i class="material-icons">create</i></a>
+                                                            <a href="/add_itemsview/{{username}}/{{ list_object.name }}/{{email}}" ><i class="material-icons">add</i></a>
+                                                            <a href="/remove_lists/{{username}}/{{ list_object.name }}/{{email}}" ><i class="material-icons">delete</i></a>
                                                             </div>
                                                     </div>
                                                 </div>
@@ -60,7 +61,7 @@
                                 </ul>
                             </div>
                             <div class="fixed-action-btn click-to-toggle">
-                                <a class="btn-floating btn-large orange">
+                                <a class="btn-floating btn-large green">
                                     <i class="large material-icons">menu</i>
                                 </a>
                                 <ul>

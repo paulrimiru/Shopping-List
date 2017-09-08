@@ -30,44 +30,29 @@ def index():
     """
     return render_template("index.html", user=USER)
 
-@APP.route('/dashboard/<username>/<user_email>')
+@APP.route('/dashboard/<username>/<email>')
 @authorisation
-def dashboard(username, user_email):
+def dashboard(username, email):
     """
     Render the user dashboard
     """
-    global USER
-    USER = ADMIN.get_user(user_email)
     user_shoppinglist = []
-    user_shoppingdict = USER.get_all()
+    user_shoppingdict = ADMIN.get_user(email).get_all()
     for shoppinglist_name in user_shoppingdict:
-        if user_shoppingdict.get(shoppinglist_name).useremail == user_email:
+        if user_shoppingdict.get(shoppinglist_name).useremail == email:
             user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
 
-    return render_template("dashboard.html", shoppinglistdict=user_shoppinglist, username=username)
+    return render_template("dashboard.html", shoppinglistdict=user_shoppinglist,
+                           username=username, email=email)
 
 #CRUD and other logic for user
-@APP.route('/login/')
-def login():
-    """
-    Render login page used to sign in
-    """
-    return render_template("login.html")
-
 @APP.route('/logout/')
 def logout():
     """LOgs out user"""
-    session.pop('signed_in',None)
-    return render_template("index.html")
+    session.pop('signed_in', None)
+    return redirect(url_for("index"))
 
-@APP.route('/register/')
-def register():
-    """
-    Render Register page used to sign up the user
-    """
-    return render_template("register.html")
 @APP.route('/create_user', methods=['POST', 'GET'])
-
 def create_user():
     """Method retrieves data from post request and creates a user"""
     if request.method == 'POST':
@@ -80,10 +65,9 @@ def create_user():
         status = ADMIN.add_user(user)
         if status == "Registered successfully":
             session["signed_in"] = True
-            flash(str(status))
-            return redirect(url_for('login'))
-        flash(str(status))
+            return redirect(url_for('authenticate'))
         return redirect(url_for('index'))
+    return render_template("register.html")
 @APP.route('/authenticate', methods=['POST', 'GET'])
 def authenticate():
     """Authenticates the user before login"""
@@ -96,20 +80,20 @@ def authenticate():
         if status['success']:
             session['email'] = email
             session['signed_in'] = True
+            global USER
+            USER = ADMIN.get_user(email)
             user = ADMIN.get_user(email)
             user_shoppingdict = user.get_all()
             for shoppinglist_name in user_shoppingdict:
                 if user_shoppingdict.get(shoppinglist_name).useremail == email:
                     user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
-            flash(str(status["message"]))
             return redirect(url_for('dashboard', username=status['username'],
-                                    shoppinglist=user_shoppinglist, user_email=email))
+                                    shoppinglist=user_shoppinglist, email=email))
         else:
             if status.get('has_account'):
-                flash(str(status.get("message")))
+                return status.get("message")
             else:
-                flash(str(status.get("message")))
-                return redirect(url_for('register'))
+                return redirect(url_for('create_user'))
     elif request.method == 'GET':
         return render_template("login.html")
 #CRUD and other logic for shopping lists
@@ -134,28 +118,26 @@ def createlist():
         shoppinglist_object = ShoppingList(user_email, lname, ldesc)
         USER = ADMIN.get_user(user_email)
         status = ADMIN.get_user(user_email).create_list(shoppinglist_object)
-        if status.get("Success"):
-            flash(str(status['message']))
         user_shoppingdict = ADMIN.get_user(user_email).get_all()
         for shoppinglist_name in user_shoppingdict:
             if user_shoppingdict.get(shoppinglist_name).useremail == user_email:
                 user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
     return render_template("dashboard.html", shoppinglist=user_shoppinglist, list_name=lname,
-                           username=USER.username, useremail=user_email)
+                           username=USER.username, email=user_email)
 
-@APP.route('/edit_shoppinglist/<username>/<list_name>/')
+@APP.route('/edit_shoppinglist/<username>/<list_name>/<email>')
 @authorisation
-def edit_shoppinglist(username, list_name):
+def edit_shoppinglist(username, list_name, email):
     """
     Render view for editing shopping lists
     """
     shoppinglist = USER.get_list(list_name)
     return render_template("edit_shoppinglist.html", description=shoppinglist.description,
-                           list_name=list_name, username=username)
+                           list_name=list_name, username=username, email=email)
 
-@APP.route('/remove_lists/<username>/<list_name>/', methods=['POST', 'GET'])
+@APP.route('/remove_lists/<username>/<list_name>/<email>')
 @authorisation
-def remove_list(username, list_name):
+def remove_list(username, list_name, email):
     """Removes lists from users"""
     USER.delete_list(list_name)
     shopping_lists = USER.get_all()
@@ -165,7 +147,7 @@ def remove_list(username, list_name):
         if shopping_lists[key].useremail == USER.email:
             user_shoppinglist.append(shopping_lists[key])
     return render_template("dashboard.html", shoppinglist=user_shoppinglist,
-                           username=username)
+                           username=username, email=email)
 
 @APP.route('/update_list', methods=['POST', 'GET'])
 @authorisation
@@ -185,18 +167,19 @@ def update_list():
         for key in shopping_lists:
             if shopping_lists[key].useremail == USER.email:
                 user_shoppinglist.append(shopping_lists[key])
-    return render_template("dashboard.html", shoppinglist=user_shoppinglist, username=USER.username)
+    return render_template("dashboard.html", shoppinglist=user_shoppinglist,
+                           username=USER.username, email=USER.email)
 #CRUD and other logic for items
-@APP.route('/add_itemstolist/<username>/<list_name>')
+@APP.route('/add_itemstolist/<username>/<list_name>/<email>')
 @authorisation
-def additems_tolist(username, list_name):
+def additems_tolist(username, list_name, email):
     """
     Render view for editing shopping lists
     """
     shoppinglist = USER.get_list(list_name)
     return render_template("additems_tolist.html",
                            shoppinglist=shoppinglist.display_list(),
-                           list_name=list_name, username=username)
+                           list_name=list_name, username=username, email=email)
 
 @APP.route('/add_items', methods=['POST', 'GET'])
 @authorisation
@@ -213,22 +196,33 @@ def add_items():
         list_.add_item(name, item)
         shoppinglist = USER.get_list(listname)
     return render_template("additems_tolist.html", list_name=listname,
-                           shoppinglist=shoppinglist.display_list(), username=USER.username)
+                           shoppinglist=shoppinglist.display_list(), username=USER.username,
+                           email=USER.email)
 
-@APP.route('/add_itemsview/<username>/<list_name>', methods=['POST', 'GET'])
+@APP.route('/view_items/<listname>/<email>', methods=['POST', 'GET'])
 @authorisation
-def additems_view(username, list_name):
+def view_items(listname, email):
+    """view items in list"""
+    shoppinglist = USER.get_list(listname)
+    return render_template("view_items.html", list_name=listname,
+                           shoppinglist=shoppinglist.display_list(), username=USER.username,
+                           useremail=email)
+
+@APP.route('/add_itemsview/<username>/<list_name>/<email>', methods=['POST', 'GET'])
+@authorisation
+def additems_view(username, list_name, email):
     """Renders the page to add items to list"""
-    return render_template("additems_tolist.html", list_name=list_name, username=username)
+    return render_template("additems_tolist.html", list_name=list_name, username=username,
+                           useremail=email)
 
-@APP.route('/remove_items/<item_name>/<list_name>', methods=['POST', 'GET'])
+@APP.route('/remove_items/<item_name>/<list_name>/<email>', methods=['POST', 'GET'])
 @authorisation
-def remove_item(item_name, list_name):
+def remove_item(item_name, list_name, email):
     """Method to remove itmems from lists"""
     list_ = USER.get_list(list_name)
     list_.remove_item(item_name)
     return render_template("additems_tolist.html", list_name=list_name,
-                           shoppinglist=list_.display_list())
+                           shoppinglist=list_.display_list(), useremail=email)
 # custom error pages
 @APP.errorhandler(404)
 def page_not_found_error(error):

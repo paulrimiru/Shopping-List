@@ -11,15 +11,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <!--Character encoding-->
       <meta charset="utf-8"/>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class=flashes>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
       
     </head>
     <body id="authbody">
@@ -29,7 +20,7 @@
                         <a href="#" class="brand-logo center black-text">Shopping List app</a>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="/index" class=" black-text">Home</a></li>
-                            <li><a href="/register" class=" black-text">Sign up</a></li>
+                            <li><a href="/create_user" class=" black-text">Sign up</a></li>
                         </ul>
                     </div>
                 </nav>
