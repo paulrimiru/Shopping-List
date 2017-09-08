@@ -12,7 +12,6 @@ class AdminTest(unittest.TestCase):
     def test_add_user(self):
         """test to add a user"""
         myuser = User("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
-        
         self.admin.add_user(myuser)
 
         self.assertEqual(1, len(self.admin.get_all_users()))
@@ -26,7 +25,6 @@ class AdminTest(unittest.TestCase):
     def test_update_user(self):
         """test to determine if user is updated"""
         myuser = User("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
-        
         self.admin.add_user(myuser)
         self.assertEqual(1, len(self.admin.get_all_users()))
 

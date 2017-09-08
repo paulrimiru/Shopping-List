@@ -7,15 +7,15 @@ from shopping_list_app.shoppinglist import ShoppingList
 class UserListTest(unittest.TestCase):
     """Classs to test the manipulation of user list"""
     def setUp(self):
-        self.user = User("Mike", "Paul", "mikepaul@shoppilist.com", 123456789)
+        self.user = User("Mike", "Paul", "mikepaul@shoppilist.com", "123456789")
     def test_create_new_list(self):
         """method to test creation of a new list"""
-        newlist = ShoppingList("mike@gmail.com","Week1", "Shopping requireed in week 1 andela")
+        newlist = ShoppingList("mike@gmail.com", "Week1", "Shopping requireed in week 1 andela")
         self.assertEqual(0, len(self.user.get_all()))
         self.user.create_list(newlist)
         self.assertEqual(1, len(self.user.get_all()))
         self.assertEqual("Week1", self.user.get_list(newlist.name).name)
-        newlist2 = ShoppingList("mike@gmail.com","Week1", "Shopping requireed in week 1 andela")
+        newlist2 = ShoppingList("mike@gmail.com", "Week1", "Shopping requireed in week 1 andela")
         self.assertEqual(False, self.user.create_list(newlist2)['Success'])
     def test_remove_list(self):
         """method to test deletion of a list"""

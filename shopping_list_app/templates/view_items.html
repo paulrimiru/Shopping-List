@@ -1,6 +1,6 @@
 <html>
         <head>
-            <title>Add items</title>
+            <title>Edit List</title>
           <!--Import Google Icon Font-->
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
           <!--Import materialize.css-->
@@ -19,8 +19,8 @@
                         <div class="nav-wrapper">
                                 <a href="#" class="brand-logo center black-text">Shopping List app</a>
                                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                                        <li><a href="/dashboard/{{username}}/{{email}}" class=" black-text">Home</a></li>
-                                        <li><a href="/logout" class=" black-text">Log out</a></li>
+                                <li><a href="/dashboard/{{username}}/{{email}}" class=" black-text">Home</a></li>
+                                <li><a href="/logout" class=" black-text">Log out</a></li>
                                 </ul>
                         </div>
                         </nav>
@@ -31,32 +31,6 @@
                                           <div class="col s12">
                                              <div class="card">
                                                 <div class="card-content">
-                                                <form action="/add_items" method="POST">
-                                                    <div class="row">
-                                                            <div class="input-field col s12"> 
-                                                                    <input id="listname" type="text" name="listname" class="validate" value="{{ list_name }}">
-                                                                    <label for="listname"></label>
-                                                                </div>
-                                                    </div>
-                                                    <div class="row">
-                                                            <div class="input-field col s6">
-                                                                <input id="name" type="text" name="name" class="validate" required>
-                                                                <label for="name" class="active">Item name</label>
-                                                            </div>
-                                                            
-                                                            <div class="input-field col s6">
-                                                                    <input id="price" type="number" name="price" class="validate" required>
-                                                                    <label for="price" class="active">Item price</label>
-                                                            </div>
-                                                    </div>
-                                                    <div class="row">
-                                                            <div class="input-field col s12">
-                                                                    <input id="description" type="text" name="description" class="validate" required>
-                                                                    <label for="description" class="active">Item description</label>
-                                                            </div>
-                                                            <input type="submit" class="btn center col s4" value="Add new Item">
-                                                    </div>
-                                                </form>
                                                         <ul class="collection with-header">
                                                             <li class="collection-header"><h5>Here are the items in your {{list_name}} list, add or remove some..</h5></li>
                                                             {% for itemname in shoppinglist %}
