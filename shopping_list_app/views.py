@@ -99,7 +99,6 @@ def authenticate():
 #CRUD and other logic for shopping lists
 @APP.route('/create_shoppinglist/')
 @authorisation
-@authorisation
 def create_shoppinglist():
     """
     Render view for creating new shopping lists
