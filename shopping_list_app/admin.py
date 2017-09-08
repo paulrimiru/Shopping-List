@@ -1,15 +1,26 @@
 """
 This module adds users and removes users from the app
 """
+import re
 class Admin(object):
     """class adds and removes users"""
     def __init__(self):
         self.users = {}
 
     def add_user(self, user):
-        """Method adds new user"""   
-        self.users.update({user.email:user})
-        print(vars(user))
+        """Method adds new user"""
+        username = user.firstname+user.secondname
+        if user.email in self.users:
+            return "User already exists"
+        else:
+            if len(user.password) < 6:
+                return "Password too short"
+            elif not re.match("^[a-zA-Z0-9_]*$", username):
+                return "Do not include special characters in your names"
+            else:
+                self.users.update({user.email:user})
+                return "Registered successfully"
+        return
     def remove_user(self, email):
         """method removes a user"""
         self.users.pop(email)
@@ -30,6 +41,7 @@ class Admin(object):
             user = self.users[email]
             if user.password == password:
                 account_details.update({"success":True})
+                account_details.update({"message":"Welcome"})
                 account_details.update({"username":user.username})
                 return account_details
             else:

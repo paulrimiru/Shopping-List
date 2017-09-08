@@ -25,3 +25,4 @@ class ShoppingList(object):
     def get_email(self):
         """returns the value of the user email"""
         return self.useremail
+    

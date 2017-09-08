@@ -25,7 +25,6 @@
                         {% if user %}
                             <li><a href="/login" class=" black-text">Login</a></li>
                             <li><a href="/register" class=" black-text">Sign up</a></li>
-                            <li><a href="/dashboard/{{ user.username }}" class=" black-text">Profile</a></li>
                         {% else %}
                             <li><a href="/login" class=" black-text">Login</a></li>
                             <li><a href="/register" class=" black-text">Sign up</a></li>
@@ -131,5 +130,18 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/mainjs.js') }}"></script>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <script type="text/javascript">
+            let msg = "{{ message|safe }}";
+
+            $(document).ready(function () {
+                Materialize.toast(msg, 4000, 'rounded')
+            });
+        </script>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
   </body>
 </html>

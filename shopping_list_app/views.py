@@ -2,7 +2,7 @@
 Class for rendering my views in template folder
 """
 from functools import wraps
-from flask import session, render_template, redirect, url_for, request
+from flask import session, render_template, redirect, url_for, request, flash
 
 from shopping_list_app import APP
 from shopping_list_app.user import User
@@ -13,14 +13,13 @@ from shopping_list_app.item import Item
 ADMIN = Admin()
 USER = None
 
-
 def authorisation(func):
     """Wrapper to check user authorization"""
     @wraps(func)
     def auth(*args, **kargs):
         """checks for if the user is logged in through the session"""
-        if not session['signed_in']:
-            return redirect(url_for('login'))
+        if "signed_in" not in session:
+            return render_template("login.html", error="You need to be logged in")
         return func(*args, **kargs)
     return auth
 @APP.route('/')
@@ -31,14 +30,19 @@ def index():
     """
     return render_template("index.html", user=USER)
 
-@APP.route('/dashboard/<username>')
+@APP.route('/dashboard/<username>/<user_email>')
 @authorisation
-def dashboard(username):
+def dashboard(username, user_email):
     """
     Render the user dashboard
     """
-    shoppinglists = USER.get_all()
-    return render_template("dashboard.html", shoppinglistdict=shoppinglists, username=username)
+    user_shoppinglist = []
+    user_shoppingdict = USER.get_all()
+    for shoppinglist_name in user_shoppingdict:
+        if user_shoppingdict.get(shoppinglist_name).useremail == user_email:
+            user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
+
+    return render_template("dashboard.html", shoppinglistdict=user_shoppinglist, username=username)
 
 #CRUD and other logic for user
 @APP.route('/login/')
@@ -51,8 +55,8 @@ def login():
 @APP.route('/logout/')
 def logout():
     """LOgs out user"""
-    del session['signed_in']
-    return render_template("Index.html")
+    session.pop('signed_in',None)
+    return render_template("index.html")
 
 @APP.route('/register/')
 def register():
@@ -61,6 +65,7 @@ def register():
     """
     return render_template("register.html")
 @APP.route('/create_user', methods=['POST', 'GET'])
+
 def create_user():
     """Method retrieves data from post request and creates a user"""
     if request.method == 'POST':
@@ -70,11 +75,13 @@ def create_user():
         password = request.form['password']
 
         user = User(fname, sname, email, password)
-        ADMIN.add_user(user)
-
-        global USER
-        USER = user
-        return redirect(url_for('login'))
+        status = ADMIN.add_user(user)
+        if status == "Registered successfully":
+            session["signed_in"] = True
+            flash(str(status))
+            return redirect(url_for('login'))
+        flash(str(status))
+        return redirect(url_for('index'))
 @APP.route('/authenticate', methods=['POST', 'GET'])
 def authenticate():
     """Authenticates the user before login"""
@@ -92,16 +99,20 @@ def authenticate():
             for shoppinglist_name in user_shoppingdict:
                 if user_shoppingdict.get(shoppinglist_name).useremail == email:
                     user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
+            flash(str(status["message"]))
             return render_template("dashboard.html", username=status['username'],
                                    shoppinglist=user_shoppinglist)
         else:
             if status.get('has_account'):
-                return status["message"]
+                flash(str(status.get("message")))
             else:
+                flash(str(status.get("message")))
                 return redirect(url_for('register'))
-
+    elif request.method == 'GET':
+        return render_template("login.html")
 #CRUD and other logic for shopping lists
 @APP.route('/create_shoppinglist/')
+@authorisation
 @authorisation
 def create_shoppinglist():
     """
@@ -120,11 +131,14 @@ def createlist():
         ldesc = request.form['description']
         shoppinglist_object = ShoppingList(user_email, lname, ldesc)
 
-        ADMIN.get_user(user_email).create_list(shoppinglist_object)
-        user_shoppingdict = ADMIN.get_user(user_email).get_all()
-        for shoppinglist_name in user_shoppingdict:
-            if user_shoppingdict.get(shoppinglist_name).useremail == user_email:
-                user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
+        status = ADMIN.get_user(user_email).create_list(shoppinglist_object)
+        if status.get("Success"):
+            flash(str(status['message']))
+            user_shoppingdict = ADMIN.get_user(user_email).get_all()
+            for shoppinglist_name in user_shoppingdict:
+                if user_shoppingdict.get(shoppinglist_name).useremail == user_email:
+                    user_shoppinglist.append(user_shoppingdict.get(shoppinglist_name))
+            
 
     return render_template("dashboard.html", shoppinglist=user_shoppinglist, list_name=lname,
                            username=USER.username, useremail=user_email)
