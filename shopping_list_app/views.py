@@ -115,8 +115,7 @@ def createlist():
         lname = request.form['listname']
         ldesc = request.form['description']
         shoppinglist_object = ShoppingList(user_email, lname, ldesc)
-        USER = ADMIN.get_user(user_email)
-        status = ADMIN.get_user(user_email).create_list(shoppinglist_object)
+        ADMIN.get_user(user_email).create_list(shoppinglist_object)
         user_shoppingdict = ADMIN.get_user(user_email).get_all()
         for shoppinglist_name in user_shoppingdict:
             if user_shoppingdict.get(shoppinglist_name).useremail == user_email:

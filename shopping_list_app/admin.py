@@ -20,7 +20,6 @@ class Admin(object):
             else:
                 self.users.update({user.email:user})
                 return "Registered successfully"
-        return
     def remove_user(self, email):
         """method removes a user"""
         self.users.pop(email)

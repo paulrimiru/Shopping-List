@@ -18,17 +18,15 @@ class User(object):
             status.update({"Success":False})
             status.update({"message":"List with same name exists"})
             return status
-        else:
-            status.update({"Success":True})
-            status.update({"message":"List added successfully"})
-            self.userlists.update({mylist.name: mylist})
-            return status
+        status.update({"Success":True})
+        status.update({"message":"List added successfully"})
+        self.userlists.update({mylist.name: mylist})
+        return status
     def delete_list(self, name):
         """deletes a user list"""
         self.userlists.pop(name)
     def update_list(self, name, newlist):
         """updates a user list"""
-        self.delete_list(name)
         self.create_list(newlist)
     def get_list(self, name):
         """gets a specific list"""
